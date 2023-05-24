@@ -41,6 +41,8 @@
         "tuple": "cpp",
         "utility": "cpp",
         "fstream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "list": "cpp",
+        "functional": "cpp"
     }
 }
