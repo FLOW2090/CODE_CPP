@@ -1,7 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-using namespace std;
+namespace haha{
+    void func(){;}
+};
+
+namespace huhu{
+    void func(){;}
+};
+
+using std::vector;
+using std::cout;
+using namespace haha;
+using namespace huhu;
 
 int main()
 {
