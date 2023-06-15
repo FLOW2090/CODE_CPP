@@ -1,15 +1,30 @@
-#include<iostream>
-
 #include <iostream>
-#include <string>
-
 using namespace std;
+class A {
+public:
+    A() { fun(); }
+    virtual void fun() {}
+    ~A() {}
+};
 
-int main()
-{
-    string str1 = "abc";
-string str2 = str1;
-char str3[] = "abc";
-char* str4 = str3;
-cout << str4;
+class B : A {
+public:
+    B() { fun(); }
+    void fun() {}
+    ~B() {}
+};
+
+class C : public B {
+public:
+    C() { fun(); }
+    virtual void fun() {}
+    ~C() {}
+};
+
+int main() {
+    B *pb = new C();
+    pb->fun();
+    delete pb;
+    cout << "All done!" << endl;
+    return 0;
 }
