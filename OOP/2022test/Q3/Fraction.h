@@ -54,7 +54,24 @@ class Fraction
 ostream& operator <<(ostream& out,const Fraction& x)
 {
     if(x.denominator != 1)
-        out << x.numerator << '/' << x.denominator;
+    {
+        int count;
+        long long numtmp,denotmp;
+        if(x.denominator < 0)
+        {
+            count++;
+            denotmp = -x.denominator;
+        }
+        else denotmp = x.denominator;
+        if(x.numerator < 0)
+        {
+            count++;
+            numtmp = -x.numerator;
+        }
+        else numtmp = x.numerator;
+        if(count % 2) out << numtmp << '/' << denotmp;
+        else out << '-' << numtmp << '/' << denotmp;
+    }
     else out << x.numerator;
     return out;
 }
