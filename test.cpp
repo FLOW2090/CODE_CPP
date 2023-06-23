@@ -8,20 +8,6 @@
 
 using namespace std;
 
-void RangedRandDemo( int range_min, int range_max, int n )
-{
-   Generate random numbers in thehalf-closed interval
-   [range_min, range_max). In other words,
-   range_min <= random number <range_max
-   int i;
-   for ( i = 0; i < n; i++ )
-   {
-      int u = (double)rand() / (RAND_MAX + 1) *(range_max - range_min) // RAND_MAX = 32767
-            + range_min;
-      printf( "  %6d\n", u);
-   }
-}
-
 int main()
 {
    srand( (unsigned)time( NULL ) );
