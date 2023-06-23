@@ -8,8 +8,23 @@
 
 using namespace std;
 
+void RangedRandDemo( int range_min, int range_max, int n )
+{
+   Generate random numbers in thehalf-closed interval
+   [range_min, range_max). In other words,
+   range_min <= random number <range_max
+   int i;
+   for ( i = 0; i < n; i++ )
+   {
+      int u = (double)rand() / (RAND_MAX + 1) *(range_max - range_min) // RAND_MAX = 32767
+            + range_min;
+      printf( "  %6d\n", u);
+   }
+}
+
 int main()
 {
+   srand( (unsigned)time( NULL ) );
    vector<int> _vec;
    list<int> _list;
    deque<int> _deq;
@@ -88,29 +103,45 @@ int main()
 
    cout << "******************************" << endl;
 
-   vec_begin = clock();
-   for(int i = 0;i < 100000;i++) _vec.insert(_vec.begin() + _vec.size() / 2,i);
-   vec_end = clock();
 
-   clock_t tmp_begin,tmp_end;
-   list_begin = clock();
-   list_end = clock();
+   clock_t tmp_begin,tmp_end,vec_time,list_time,deq_time;
+   int _tmp_;
+
+   vec_time = clock();
    for(int i = 0;i < 100000;i++)
    {
-      list<int>::iterator it = find(_list.begin(),_list.end(),int(i/2));
+      _tmp_ = (double)rand() / (RAND_MAX + 1) *(_vec.size());
+      tmp_begin = clock();
+      _vec.insert(_vec.begin() + _tmp_,i);
+      tmp_end = clock();
+      vec_time += tmp_end - tmp_begin;
+   }
+
+   list_time = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      _tmp_ = (double)rand() / (RAND_MAX + 1) *(_deq.size());
+      auto it = find(_list.begin(),_list.end(),_tmp_);
       tmp_begin = clock();
       _list.insert(it,i);
       tmp_end = clock();
-      list_end += tmp_end - tmp_begin;
+      list_time += tmp_end - tmp_begin;
    }
 
    deq_begin = clock();
-   for(int i = 0;i < 100000;i++) _deq.insert(_deq.begin() + _deq.size() / 2,i);
    deq_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      _tmp_ = (double)rand() / (RAND_MAX + 1) *(_deq.size());
+      tmp_begin = clock();
+      _deq.insert(_deq.begin() + _tmp_,i);
+      tmp_end = clock();
+      deq_time += tmp_end - tmp_begin;
+   }
 
-   cout << "vector insert anywhere:" << vec_end - vec_begin << endl;
-   cout << "list insert anywhere:" << list_end - list_begin << endl;
-   cout << "deque insert anywhere:" << deq_end - deq_begin << endl;
+   cout << "vector insert anywhere:" << vec_time << endl;
+   cout << "list insert anywhere:" << list_time << endl;
+   cout << "deque insert anywhere:" << deq_time << endl;
 
    cout << "******************************" << endl;
 
