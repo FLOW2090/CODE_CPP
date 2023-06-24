@@ -16,36 +16,62 @@ int main()
    deque<int> _deq;
    clock_t vec_begin, vec_end, list_begin, list_end,
       deq_begin, deq_end;
+   clock_t tmp_begin,tmp_end,vec_time,list_time,deq_time;
+   int _tmp_;
 
-   vec_begin = clock();
-   for(int i = 0;i < 100000;i++) _vec.push_back(i);
-   vec_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _vec.push_back(i);
+      tmp_end = clock();
+      vec_time += tmp_end - tmp_begin;
+   }
 
-   list_begin = clock();
-   for(int i = 0;i < 100000;i++) _list.push_back(i);
-   list_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _list.push_back(i);
+      tmp_end = clock();
+      list_time += tmp_end - tmp_begin;
+   }
 
-   deq_begin = clock();
-   for(int i = 0;i < 100000;i++) _deq.push_back(i);
-   deq_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _deq.push_back(i);
+      tmp_end = clock();
+      deq_time += tmp_end - tmp_begin;
+   }
 
-   cout << "vector back insert:" << vec_end - vec_begin << endl;
-   cout << "list back insert:" << list_end - list_begin << endl;
-   cout << "deque back insert:" << deq_end - deq_begin << endl;
+   cout << "vector back insert:" << vec_time << endl;
+   cout << "list back insert:" << list_time << endl;
+   cout << "deque back insert:" << deq_time << endl;
 
    cout << "******************************" << endl;
 
-   vec_begin = clock();
-   for(int i = 0;i < 100000;i++) _vec.pop_back();
-   vec_end = clock();
+      for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _vec.pop_back();
+      tmp_end = clock();
+      vec_time += tmp_end - tmp_begin;
+   }
 
-   list_begin = clock();
-   for(int i = 0;i < 100000;i++) _list.pop_back();
-   list_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _list.pop_back();
+      tmp_end = clock();
+      list_time += tmp_end - tmp_begin;
+   }
 
-   deq_begin = clock();
-   for(int i = 0;i < 100000;i++) _deq.pop_back();
-   deq_end = clock();
+   for(int i = 0;i < 100000;i++)
+   {
+      tmp_begin = clock();
+      _deq.pop_back();
+      tmp_end = clock();
+      deq_time += tmp_end - tmp_begin;
+   }
 
    cout << "vector back pop:" << vec_end - vec_begin << endl;
    cout << "list back pop:" << list_end - list_begin << endl;
@@ -89,9 +115,6 @@ int main()
 
    cout << "******************************" << endl;
 
-
-   clock_t tmp_begin,tmp_end,vec_time,list_time,deq_time;
-   int _tmp_;
 
    vec_time = clock();
    for(int i = 0;i < 100000;i++)
